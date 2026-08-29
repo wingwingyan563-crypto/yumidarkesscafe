@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yumi's Secret Maid Café | Special Birthday Service</title>
+    <style>
+        :root {
+            --primary-gold: #ffd700;
+            --accent-yellow: #fff3a0;
+            --dark-bg: #121212;
+            --card-bg: #1e1e24;
+            --text-color: #f0f0f0;
+            --secret-pink: #ff6b81;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: var(--card-bg);
+            border: 2px solid var(--primary-gold);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.25);
+            box-sizing: border-box;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px dashed var(--primary-gold);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: var(--primary-gold);
+            font-size: 1.5rem;
+            margin: 8px 0 5px 0;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+
+        .header p {
+            font-size: 0.85rem;
+            color: #ccc;
+            margin: 3px 0;
+            font-style: italic;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--primary-gold);
+            color: #000;
+            font-weight: bold;
+            padding: 5px 14px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .story-box {
+            font-size: 0.78rem;
+            color: #bbb;
+            text-align: left;
+            margin-top: 15px;
+            background: rgba(0,0,0,0.3);
+            padding: 12px;
+            border-radius: 8px;
+            line-height: 1.4;
+        }
+
+        .menu-section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            color: var(--primary-gold);
+            font-size: 1.1rem;
+            border-left: 4px solid var(--primary-gold);
+            padding-left: 10px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .secret-title {
+            color: var(--secret-pink);
+            border-left-color: var(--secret-pink);
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #282830;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        .secret-item {
+            background: #2d1f2d;
+            border: 1px dashed var(--secret-pink);
+            flex-direction: column;
+            align-items: stretch;
+            padding: 15px;
+        }
+
+        .secret-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-info {
+            flex: 1;
+            padding-right: 10px;
+        }
+
+        .item-name-en {
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: #fff;
+        }
+
+        .item-name-es {
+            font-weight: bold;
+            font-size: 0.85rem;
+            color: var(--accent-yellow);
+            margin-bottom: 4px;
+        }
+
+        .secret-text {
+            color: var(--secret-pink) !important;
+        }
+
+        .item-desc {
+            font-size: 0.78rem;
+            color: #bbb;
+            line-height: 1.2;
+        }
+
+        .item-price {
+            color: var(--primary-gold);
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-top: 6px;
+        }
+
+        .add-btn {
+            background: var(--primary-gold);
+            color: #000;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .secret-btn {
+            background: var(--secret-pink);
+            color: #fff;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .add-btn:active {
+            transform: scale(0.95);
+        }
+
+        .cart-summary {
+            background: #18181c;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .cart-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--accent-yellow);
+            font-size: 0.95rem;
+        }
+
+        .cart-list {
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .total-price {
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: right;
+            color: var(--primary-gold);
+            border-top: 1px solid #444;
+            padding-top: 8px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #ffd700, #ffae00);
+            color: #000;
+            border: none;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 10px;
+            margin-top: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Modal popup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 999;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 2px solid var(--primary-gold);
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 380px;
+            width: 100%;
+        }
+
+        .modal-content h2 {
+            color: var(--primary-gold);
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+
+        .close-btn {
+            background: var(--primary-gold);
+            color: #000;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <span class="badge">🎂 Feb 27 | Birthday Special for My Master</span>
+        <h1>Yumi's Secret Maid Café</h1>
+        <p>"I dislike ecchi things... but I will serve my special master today."</p>
+        
+        <!-- 背景故事西班牙文 + 英文 -->
+        <div class="story-box">
+            <strong style="color:var(--primary-gold);">📖 El Fondo de "Yumi's Secret Maid Café":</strong><br>
+            Muchos años después, Rito Yuuki finalmente se casó con Haruna. Aunque Yumi (Darkness) siempre quiso asesinar a Yuuki-kun, ver lo mucho que se amaban él y Haruna hizo que nunca pudiera llevar a cabo su misión.<br>
+            Más tarde, su nave espacial se quedó completamente sin energía, por lo que no pudo regresar a su planeta natal. Además, para poder ahorrar suficiente dinero para comprar su comida favorita, los Taiyakis, no tuvo más remedio que abrir la primera Cafetería de Maids (Maid Café) de toda España, aquí en Sevilla.<br>
+            Ella sola se encarga de todo en la tienda, ¡y hoy es su primer día de apertura oficialmente!
+            
+            <hr style="border: 0; border-top: 1px dashed #444; margin: 10px 0;">
+            
+            <strong style="color:var(--primary-gold);">📖 Background of "Yumi's Secret Maid Café":</strong><br>
+            Many years later, Yuuki married Haruna. Although Yumi (Darkness) always wanted to assassinate Yuuki-kun, seeing how deeply in love Yuuki and Haruna were, she just couldn't bring herself to do it.<br>
+            Later, her spaceship completely ran out of energy, leaving her unable to return to her home planet. Since she needs to earn money to buy her favorite Taiyaki, she opened the very first Maid Café in all of Spain, right here in Seville. She handles everything all by herself, and today is the grand opening day!
+        </div>
+    </div>
+
+    <!-- MAIN COURSES -->
+    <div class="menu-section">
+        <div class="section-title">✨ Main Course / Platos Principales</div>
+        
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-name-en">Omurice with Ketchup Magic</div>
+                <div class="item-name-es">Omurice con Magia de Kétchup</div>
+                <div class="item-desc">Yumi draws a cute picture & casts a moe magic spell! / ¡Yumi dibuja algo lindo y hace magia moe!</div>
+                <div class="item-price">Price / Precio: 20 Kisses / 20 Besos</div>
+            </div>
+            <button class="add-btn" onclick="addToCart('Special Omurice', '20 Kisses / Besos')">Order / Pedir</button>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-name-en">Yumi's Darkness Special Curry</div>
+                <div class="item-name-es">Curry Especial de Yumi</div>
+                <div class="item-desc">Rich and delicious, guaranteed to make your heart race! / ¡Rico y delicioso, hará latir tu corazón!</div>
+                <div class="item-price">Price / Precio: 10-sec Hug / Abrazo de 10s</div>
+            </div>
+            <button class="add-btn" onclick="addToCart('Special Curry', '10-sec Hug / Abrazo 10s')">Order / Pedir</button>
+        </div>
+    </div>
+
+    <!-- DESSERTS & DRINKS -->
+    <div class="menu-section">
+        <div class="section-title">🐟 Yumi's Favorites / Postres y Bebidas</div>
+        
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-name-en">Freshly Baked Red Bean Taiyaki</div>
+                <div class="item-name-es">Taiyaki de Azuki Recién Horneado</div>
+                <div class="item-desc">Yumi's absolute favorite treat! Crisp on the outside, sweet inside. / ¡El favorito de Yumi! Crispy por fuera, dulce por dentro.</div>
+                <div class="item-price">Price / Precio: 1 Kiss / 1 Beso</div>
+            </div>
+            <button class="add-btn" onclick="addToCart('Fresh Taiyaki', '1 Kiss / 1 Beso')">Order / Pedir</button>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-name-en">Yumi's Special Iced Chocolate</div>
+                <div class="item-name-es">Chocolate Helado Especial de Yumi</div>
+                <div class="item-desc">Cool, rich and sweet, topped with love! / ¡Fresco, rico y dulce, servido con amor!</div>
+                <div class="item-price">Price / Precio: 1 Sweet Compliment / 1 Cumplido Dulce</div>
+            </div>
+            <button class="add-btn" onclick="addToCart('Iced Chocolate', 'Sweet Compliment / Cumplido')">Order / Pedir</button>
+        </div>
+    </div>
+
+    <!-- SPECIAL SERVICES -->
+    <div class="menu-section">
+        <div class="section-title">💖 Special Maid Service / Servicios Especiales</div>
+        
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-name-en">Hand-Feeding Service by Yumi</div>
+                <div class="item-name-es">Servicio de Alimentar a Mano por Yumi</div>
+                <div class="item-desc">An exclusive birthday perk just for you, Master! / ¡Un privilegio exclusivo de cumpleaños para ti!</div>
+                <div class="item-price">Price / Precio: FREE (Birthday Perk) / GRATIS</div>
+            </div>
+            <button class="add-btn" onclick="addToCart('Yumi Hand-Feeding', 'FREE / GRATIS')">Order / Pedir</button>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-name-en">Cheki Photo Memory (Polaroid)</div>
+                <div class="item-name-es">Foto Instax de Recuerdo (Cheki)</div>
+                <div class="item-desc">Capture this special Cosplay moment forever! / ¡Captura este momento especial de Cosplay para siempre!</div>
+                <div class="item-price">Price / Precio: Lifetime Promise / Promesa de por Vida</div>
+            </div>
+            <button class="add-btn" onclick="addToCart('Cheki Photo Memory', 'Lifetime Promise / Promesa')">Order / Pedir</button>
+        </div>
+    </div>
+
+    <!-- SECRET VIP MENU (WITHOUT PHOTO) -->
+    <div class="menu-section">
+        <div class="section-title secret-title">🔒 Secret VIP Menu / Menú Secreto VIP</div>
+        
+        <div class="menu-item secret-item">
+            <div class="secret-item-header">
+                <div class="item-info">
+                    <div class="item-name-en secret-text">Yumi's Ultimate Secret Service (Love-Love)</div>
+                    <div class="item-name-es secret-text">Servicio Secreto Especial de Yumi (Hacer el Amor)</div>
+                    <div class="item-desc">A super special, private night service only for the Birthday Master... ❤️ / ¡Un servicio nocturno super especial y privado solo para el Amo cumpleañero... ❤️</div>
+                    <div class="item-price secret-text">Price / Precio: Endless Love / Amor Incondicional</div>
+                </div>
+            </div>
+
+            <button class="add-btn secret-btn" onclick="addToCart('Secret Love-Love Service', 'Endless Love / Amor Incondicional')">Unlock / Pedir ❤️</button>
+        </div>
+    </div>
+
+    <!-- CART SUMMARY -->
+    <div class="cart-summary">
+        <div class="cart-title">🛒 Selected Items / Platos Seleccionados:</div>
+        <div class="cart-list" id="cartList">
+            <i style="color:#777;">No items ordered yet, Master... / Todavía no has pedido nada, Amo...</i>
+        </div>
+        <div class="total-price" id="totalPrice">Total: 0</div>
+    </div>
+
+    <button class="checkout-btn" onclick="checkout()">Send Order to Yumi's Kitchen 💌<br><span style="font-size:0.8rem; font-weight:normal;">Enviar Pedido a la Cocina de Yumi</span></button>
+</div>
+
+<!-- POPUP MODAL -->
+<div class="modal" id="orderModal">
+    <div class="modal-content">
+        <h2>🎉 Order Received! / ¡Pedido Recibido!</h2>
+        <p id="modalMessage">Maid Yumi is preparing your order now. Please wait a moment, Master... ❤️</p>
+        <p style="font-size:0.85rem; color:#aaa;">Yumi está preparando tu pedido. Por favor espera un momento, Amo... ❤️</p>
+        <p style="font-size:0.9rem; color:var(--primary-gold); margin-top:15px; font-weight:bold;">"Happy Birthday, my Master."<br>"¡Feliz Cumpleaños, mi Amo!"</p>
+        <button class="close-btn" onclick="closeModal()">Got it! / ¡Entendido!</button>
+    </div>
+</div>
+
+<script>
+    let cart = [];
+
+    function addToCart(name, price) {
+        cart.push({name, price});
+        updateCart();
+    }
+
+    function updateCart() {
+        const cartList = document.getElementById('cartList');
+        const totalPrice = document.getElementById('totalPrice');
+
+        if (cart.length === 0) {
+            cartList.innerHTML = '<i style="color:#777;">No items ordered yet, Master... / Todavía no has pedido nada, Amo...</i>';
+            totalPrice.innerText = 'Total: 0';
+            return;
+        }
+
+        cartList.innerHTML = '';
+        cart.forEach((item, index) => {
+            cartList.innerHTML += `
+                <div class="cart-item">
+                    <span>${index + 1}. ${item.name}</span>
+                    <span style="color:#ffd700;">${item.price}</span>
+                </div>
+            `;
+        });
+
+        totalPrice.innerText = `${cart.length} item(s) selected! / ¡${cart.length} plato(s) seleccionado(s)!`;
+    }
+
+    function checkout() {
+        if (cart.length === 0) {
+            alert('Master, you haven\'t selected any items yet!\n\n¡Amo, todavía no has seleccionado ningún plato!');
+            return;
+        }
+        document.getElementById('orderModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('orderModal').style.display = 'none';
+        cart = [];
+        updateCart();
+    }
+</script>
+
+</body>
+</html>
